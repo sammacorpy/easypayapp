@@ -1,5 +1,5 @@
 import { Response, Request, NextFunction } from 'express';
-import { OrderController } from '../controller/order';
+import { OrderController } from '../controller/order/order';
 import { Validator } from '../helper/validator';
 import { Router } from 'express';
 export const routerV1 = Router();

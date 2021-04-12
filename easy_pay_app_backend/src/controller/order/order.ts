@@ -1,11 +1,11 @@
 
 
 import { Request, Response } from 'express';
-import { IRequestOrder, IResponseOrder } from './order/iorder';
+import { IRequestOrder, IResponseOrder } from './iorder';
 
 
-import { Order } from '../models/order';
-import { read } from '../helper/crud';
+import { Order } from '../../models/order';
+import { read } from '../../helper/crud';
 export class OrderController{
 
 
