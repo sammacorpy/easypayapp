@@ -1,7 +1,14 @@
 export enum Currency {
-    USD, EUR, THB, HKD, SGD, AUD
+    USD = 'USD',
+    EUR = 'EUR',
+    THB = 'THB',
+    HKD = 'HKD',
+    SGD = 'SGD',
+    AUD = 'AUD'
 }
+
 export type TCurrency = 'USD' | 'EUR' | 'THB' | 'HKD' | 'SGD' | 'AUD';
+
 export const getCurrency = (currency: TCurrency): Currency => {
     switch(currency){
         case 'USD':

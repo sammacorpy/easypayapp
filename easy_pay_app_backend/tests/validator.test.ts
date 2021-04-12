@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { Validator } from '../src/validator';
+import { Validator } from '../src/helper/validator';
 
 describe('Validator', ()=>{
     it('should validate Order', ()=>{
@@ -96,6 +96,14 @@ describe('Validator', ()=>{
             price: 120 ,
             currency: 'SGD',
             customerFullName: undefined
+        });
+        expect(isValid).to.equal(false);
+    });
+    it('Should not have invalid currency format', () => {
+        const isValid = Validator.validateOrders({
+            price: 120 ,
+            currency: '1',
+            customerFullName: 'Shivam verma'
         });
         expect(isValid).to.equal(false);
     });

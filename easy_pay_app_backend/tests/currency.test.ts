@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { Currency, getCurrency, isValidCurrency } from '../src/currency';
+import { Currency, getCurrency, isValidCurrency } from '../src/helper/currency';
 
 describe('Currency', () => {
     it('Should get appropriate enum currency from the currency string', () => {
@@ -23,6 +23,8 @@ describe('Currency', () => {
         expect(isValidCurrency('' as any)).to.equals(false);
         expect(isValidCurrency(undefined as any)).to.equals(false);
         expect(isValidCurrency(null as any)).to.equals(false);
+        expect(isValidCurrency(1 as any)).to.equals(false);
+
 
 
 
