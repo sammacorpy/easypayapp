@@ -4,5 +4,9 @@
         "publicKey": "app_payment_public_key",
         "privateKey": "app_payment_private_key"
 
+    },
+    "paypal": {
+        "clientID": "app_paypal_client_id",
+        "secretKey": "app_paypal_secret_key"
     }
 }

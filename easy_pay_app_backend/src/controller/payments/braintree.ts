@@ -1,20 +1,12 @@
-import { PaymentGateway } from './payments';
-import braintree from 'braintree';
+import { PaymentError, PaymentGateway, PaymentPayload, PaymentResponse } from './ipayments';
+import braintree, { Transaction, ValidatedResponse } from 'braintree';
 import config from 'config';
 
-export interface PaymentPayload {
-    orderId: string;
-    creditCard: {
-        number: string,
-        expirationMonth: string,
-        expirationYear: string,
-        cvv: string,
-    };
-}
-class Braintree extends PaymentGateway<braintree.BraintreeGateway>{
 
+
+class Braintree implements PaymentGateway{
+    private gateway;
     private constructor() {
-        super();
         this.gateway = new braintree.BraintreeGateway({
             environment: braintree.Environment.Sandbox,
             merchantId: config.get('braintree.merchantID'),
@@ -22,18 +14,27 @@ class Braintree extends PaymentGateway<braintree.BraintreeGateway>{
             privateKey: config.get('braintree.privateKey')
         });
     }
-
     public static getGateway(){
         const braintreeObj =  new Braintree();
         braintreeObj.gateway.config.timeout = 10000;
         return braintreeObj;
     }
 
-    async payWithCreditCard(payload: PaymentPayload & {amount: string}) {
-        return await this.gateway.transaction.sale(payload);
+    async payWithCreditCard(payload: PaymentPayload): Promise<Partial<PaymentResponse> & Partial<PaymentError>> {
+        return await this.gateway.transaction.sale(
+            {
+                amount: payload.amount,
+                orderId: payload.orderId,
+                creditCard: {
+                    number: payload.creditCard.number,
+                    cvv: payload.creditCard.cvv,
+                    expirationYear: payload.creditCard.expirationYear,
+                    expirationMonth: payload.creditCard.expirationMonth
+                }
+            }
+        );
     }
 
 }
 
-const paymentAPI = Braintree.getGateway();
-export default paymentAPI;
+export default Braintree.getGateway();
