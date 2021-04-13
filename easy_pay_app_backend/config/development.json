@@ -1,0 +1,7 @@
+{
+    "name": "easy Payment app - development",
+    "braintree": {
+        "name": "braintree payment gateway"
+        
+    }
+}

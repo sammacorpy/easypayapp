@@ -1,7 +1,7 @@
 import { Currency, getCurrency, TCurrency } from '../helper/currency';
 import {v4} from 'uuid';
 import { IResponseOrder } from '../controller/order/iorder';
-import { create } from '../helper/crud';
+import { create, update } from '../helper/crud';
 
 export class Order{
     id: string;
@@ -18,7 +18,12 @@ export class Order{
     }
     public static async createOrder(price: number, customerFullName: string, currency: string): Promise<Order>{
         const order = new Order(price, customerFullName, currency);
-        return create(order);
+        return create('orders', order);
+    }
+    public static async updateOrderPaidStatus(orderId:string, isPaid: boolean) {
+        return await update<Order, 'isPaid'>('orders',orderId, {
+            isPaid: true
+        });
     }
 
 }

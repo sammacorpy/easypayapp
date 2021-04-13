@@ -1,0 +1,8 @@
+{
+    "braintree": {
+        "merchantID": "app_payment_merchent_id",
+        "publicKey": "app_payment_public_key",
+        "privateKey": "app_payment_private_key"
+
+    }
+}

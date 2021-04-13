@@ -15,7 +15,7 @@ export class OrderController{
         .catch(err => resp.sendStatus(500));
     }
     public static listOrders(req: Request, resp: Response){
-        read().then(orders => resp.send(orders)).catch(err => resp.sendStatus(500));
+        read('orders').then(orders => resp.send(orders)).catch(err => resp.sendStatus(500));
     }
 
 }
