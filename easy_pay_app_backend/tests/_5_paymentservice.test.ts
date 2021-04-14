@@ -186,7 +186,7 @@ describe('Test Payment API services', () => {
     });
 
 
-    // miscelenious case 
+    // miscelenious case
     it('Should not be able to do re payments', async () => {
         const orderId = (await generateData('EUR')).body.id;
 
