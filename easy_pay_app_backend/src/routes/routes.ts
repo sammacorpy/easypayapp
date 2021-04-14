@@ -14,6 +14,8 @@ const validationErrorResponse = (validator: (data: any) => boolean) =>
 // register routes for orders here ....
 routerV1.post('/orders', [validationErrorResponse(Validator.validateOrders), OrderController.saveOrder]);
 routerV1.get('/orders', OrderController.listOrders);
+routerV1.get('/orders/:id', OrderController.findOrderById);
+
 
 // register routes for payments here .... TODO: seperate out both routes if it gets very long to manage (later)
 routerV1.post('/payments', [validationErrorResponse(Validator.validatePaymentRequest), PaymentsController.makePayment]);

@@ -13,7 +13,7 @@ export class PaymentsController {
         findById<Order>('orders', req.body.orderId)
 
         // if order is already paid respond back to user with order already palced message
-        .then(order => order.isPaid === 1 as any ? Promise.reject({error: 1, msg: 'order was already paid and placed'}) : order)
+        .then(order => order.isPaid === 1 as any ? Promise.reject({error: 1, msg: 'Order was already paid and placed'}) : order)
 
         // decide which payment getway to use based on request body parameter
         .then(order => {
@@ -43,7 +43,7 @@ export class PaymentsController {
             Promise.reject({error: 1, msg: 'payment failed', paymentStatus: paymentResp} ))
 
         // send feedback to user with order placed successfully
-        .then (orderStatus => resp.send({error:0, orderStatus, msg: 'order placed successfully'}))
+        .then (orderStatus => resp.send({error:0, orderStatus, msg: 'Order placed successfully'}))
         .catch(err => resp.status(500).send(err));
     }
 }
