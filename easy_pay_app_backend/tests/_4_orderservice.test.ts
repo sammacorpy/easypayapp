@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import { app, address } from '../index';
-import  request from 'supertest';
+import request from 'supertest';
 import { IRequestOrder } from '../src/controller/order/iorder';
 import { Currency } from '../src/helper/currency';
 describe('Test Order Service API', () => {
@@ -65,10 +65,4 @@ describe('Test Order Service API', () => {
         // tslint:disable-next-line: no-unused-expression
         expect(resp.body.id).not.null;
     });
-});
-
-describe('Test Payment API services', () => {
-
-    it('')
-
 });

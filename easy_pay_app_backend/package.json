@@ -8,7 +8,7 @@
     "build": "tsc",
     "prestart": "npm run build",
     "start": "node .",
-    "test": "mocha --require ts-node/register --reporter spec --exit  tests/**/*.ts"
+    "test": "mocha --require ts-node/register --reporter spec --exit --timeout 30000 tests/**/*.ts"
   },
   "author": "",
   "license": "ISC",

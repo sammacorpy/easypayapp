@@ -41,7 +41,9 @@ const transformToPaypalPayload = (payload: PaymentPayload): paypal.Payment => (
                     expire_year: payload.creditCard.expirationYear,
                     cvv2: payload.creditCard.cvv,
                     first_name: payload.creditCard.name.split(' ')[0],
-                    last_name: payload.creditCard.name.trim().split(' ').length>=2?payload.creditCard.name.split(' ').slice(1,).join(' '): ''
+                    last_name: payload.creditCard.name.trim().split(' ').length>=2 ?
+                               payload.creditCard.name.split(' ').slice(1,).join(' ') :
+                               undefined
                 }
             }]
         } as any,
