@@ -52,13 +52,14 @@ export const PaymentScreen = ({match, history}: {match:any, history: any}) => {
                     expirationMonth: cardExpiration.trim().split('/')[0].trim(),
                     expirationYear: cardExpiration.trim().split('/')[1].trim(),
                     cvv: cardCvv,
-                    type: cardnum.length===15? "Amex": "Visa"
+                    type: cardnum.length===15? "Amex": "Visa",
+                    name: cardHolderName
                 }
             }
         ).then(resp => {
             setOrderPaidStatus(resp.data.msg)
             
-        }).catch(err => setError(err.response.data.msg))
+        }).catch(err => setError(err.response.data.msg || "Error, wrong card details please check again"))
 
     }
 

@@ -8,7 +8,8 @@ export interface PaymentPayload {
         expirationMonth: string,
         expirationYear: string,
         cvv: string,
-        type?: string
+        type: string,
+        name: string
     };
     currency?: string;
 }

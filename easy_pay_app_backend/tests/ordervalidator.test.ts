@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import { Validator } from '../src/helper/validator';
 
-describe('Validator', ()=>{
+describe('Order Validator', ()=>{
     it('should validate Order', ()=>{
         const isValid = Validator.validateOrders( {
             price: 4300 ,

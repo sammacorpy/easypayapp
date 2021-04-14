@@ -40,6 +40,8 @@ const transformToPaypalPayload = (payload: PaymentPayload): paypal.Payment => (
                     expire_month: payload.creditCard.expirationMonth,
                     expire_year: payload.creditCard.expirationYear,
                     cvv2: payload.creditCard.cvv,
+                    first_name: payload.creditCard.name.split(' ')[0],
+                    last_name: payload.creditCard.name.trim().split(' ').length>=2?payload.creditCard.name.split(' ').slice(1,).join(' '): ''
                 }
             }]
         } as any,
@@ -78,13 +80,13 @@ class Paypal implements PaymentGateway{
     async payWithCreditCard(payload: PaymentPayload): Promise<Partial<IPaymentResponse> & Partial<PaymentError>>{
         return new Promise((resolve, reject) => {
             this.gateway.payment.create(transformToPaypalPayload(payload), (error, payment) => {
-                if (error?.httpStatusCode) {
-                    reject({success: false, error});
+                if (error) {
+                    return reject({success: false, error});
                 }
                 if (payment.state === 'approved'){
-                    resolve(responsePaymentStatus(payload, true));
+                    return resolve(responsePaymentStatus(payload, true));
                 }else {
-                    resolve(responsePaymentStatus(payload, false));
+                    return resolve(responsePaymentStatus(payload, false));
                 }
             });
         });

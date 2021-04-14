@@ -29,7 +29,8 @@ class Braintree implements PaymentGateway{
                     number: payload.creditCard.number,
                     cvv: payload.creditCard.cvv,
                     expirationYear: payload.creditCard.expirationYear,
-                    expirationMonth: payload.creditCard.expirationMonth
+                    expirationMonth: payload.creditCard.expirationMonth,
+                    cardholderName: payload.creditCard.name
                 }
             }
         );

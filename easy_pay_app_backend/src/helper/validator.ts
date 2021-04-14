@@ -19,12 +19,12 @@ export class Validator{
             case !paymentRequest.orderId:
             case !paymentRequest.creditCard || !paymentRequest.creditCard.cvv ||
                  !paymentRequest.creditCard.expirationMonth || !paymentRequest.creditCard.expirationYear ||
-                 !paymentRequest.creditCard.number || !paymentRequest.creditCard.type:
+                 !paymentRequest.creditCard.number || !paymentRequest.creditCard.type || !paymentRequest.creditCard.name:
             case paymentRequest.creditCard && paymentRequest.creditCard.cvv.length > 4 && paymentRequest.creditCard.cvv.length < 3:
             case paymentRequest.creditCard && !(paymentRequest.creditCard.number.length === 16 || paymentRequest.creditCard.number.length === 15):
             case paymentRequest.creditCard && paymentRequest.creditCard.expirationMonth.length !== 2:
             case paymentRequest.creditCard && paymentRequest.creditCard.expirationYear.length !== 4:
-            case paymentRequest.creditCard && parseInt(paymentRequest.creditCard.expirationYear, 10) < 1900:
+            case paymentRequest.creditCard && parseInt(paymentRequest.creditCard.expirationYear, 10) < 2021:
             case paymentRequest.creditCard && parseInt(paymentRequest.creditCard.expirationMonth, 10) < 0 &&
                  parseInt(paymentRequest.creditCard.expirationMonth, 10) > 12:
                 return false;
